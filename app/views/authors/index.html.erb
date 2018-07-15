@@ -1,0 +1,32 @@
+<h1>List of all authors</h1>
+<ul>
+<div class='container'>
+<img
+style="display: none;"
+src="https://media.giphy.com/media/Gyr0iZMDKlfsA/giphy.gif"/>
+<table class="authors">
+    <% @authors.each do |author| %>
+        <li>
+        <div class="row">
+            <div class="col-sm-12 col-md-8"><%= link_to author.fullname, author_path(id: author.id) %></div>
+            <div class="col-sm-12 col-md-2"><%= link_to "Edit", edit_author_path(id: author.id) %></div>
+            <div class="col-sm-12 col-md-2"><%= link_to "Delete", author_path(id: author.id), method: :delete, remote: true, data: { confirm: 'Jestes pewien?'} %></div>
+        </div>
+        </li>
+    <% end %>
+    </div>
+</div>
+
+<%= form_for @author, remote: true, html: { class: 'new-autho' } do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <hr />
+    <%= f.label :surname %>
+    <%= f.text_field :surname %>
+    <hr />
+    <%= f.label :age %>
+    <%= f.number_field :age %>
+    <hr />
+    <%= f.submit 'Save ' %>
+<% end %>
+</ul>
